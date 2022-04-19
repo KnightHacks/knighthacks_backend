@@ -7,6 +7,6 @@
 [submodule "sponsors"]
 	path = sponsors
 	url = git@github.com:LockedThread/knighthacks_sponsors.git
-[submodule "hackers"]
-	path = hackers
-	url = git@github.com:LockedThread/knighthacks_hackers.git
+[submodule "users"]
+	path = users
+	url = git@github.com:LockedThread/knighthacks_users.git
