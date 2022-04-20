@@ -1,0 +1,36 @@
+services:
+  router:
+    image: ghcr.io/apollographql/router:v0.1.0-preview.4
+    volumes:
+      - ./knighthacks_router/schema.graphql:/etc/config/supergraph.graphql
+      - ./knighthacks_router/configuration.yaml:/etc/config/configuration.yaml
+    command: [ "-c", "/etc/config/configuration.yaml", "--supergraph", "/etc/config/supergraph.graphql", "--log", "info" ]
+    ports:
+      - "4000:4000"
+  events:
+    depends_on:
+      - router
+    build:
+      context: ./knighthacks_events
+      dockerfile: ./Dockerfile
+    environment:
+      GIN_MODE: "debug"
+      TRUSTED_PROXIES: ""
+  users:
+    depends_on:
+      - router
+    build:
+      context: ./knighthacks_users
+      dockerfile: ./Dockerfile
+    environment:
+      GIN_MODE: "debug"
+      TRUSTED_PROXIES: ""
+  sponsors:
+    depends_on:
+      - router
+    build:
+      context: ./knighthacks_sponsors
+      dockerfile: ./Dockerfile
+    environment:
+      GIN_MODE: "debug"
+      TRUSTED_PROXIES: ""
