@@ -1,5 +1,5 @@
 go 1.18
 
-use events
-use users
-use sponsors
+use knighthacks_events
+use knighthacks_users
+use knighthacks_sponsors
