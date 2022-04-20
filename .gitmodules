@@ -1,0 +1,12 @@
+[submodule "knighthacks_sponsors"]
+	path = knighthacks_sponsors
+	url = git@github.com:LockedThread/knighthacks_sponsors.git
+[submodule "knighthacks_users"]
+	path = knighthacks_users
+	url = git@github.com:LockedThread/knighthacks_users.git
+[submodule "knighthacks_events"]
+	path = knighthacks_events
+	url = git@github.com:LockedThread/knighthacks_events.git
+[submodule "knighthacks_router"]
+	path = knighthacks_router
+	url = git@github.com:LockedThread/knighthacks_router.git
