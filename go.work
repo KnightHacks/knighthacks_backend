@@ -3,3 +3,4 @@ go 1.18
 use knighthacks_events
 use knighthacks_users
 use knighthacks_sponsors
+use knighthacks_shared
