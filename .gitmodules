@@ -13,3 +13,6 @@
 [submodule "knighthacks_shared"]
 	path = knighthacks_shared
 	url = git@github.com:LockedThread/knighthacks_shared.git
+[submodule "knighthacks_hackathon"]
+	path = knighthacks_hackathon
+	url = git@github.com:LockedThread/knighthacks_hackathon.git
