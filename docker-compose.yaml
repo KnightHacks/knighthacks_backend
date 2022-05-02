@@ -34,3 +34,12 @@ services:
     environment:
       GIN_MODE: "debug"
       TRUSTED_PROXIES: ""
+  hackathon:
+    depends_on:
+      - router
+    build:
+      context: ./knighthacks_hackathon
+      dockerfile: ./Dockerfile
+    environment:
+      GIN_MODE: "debug"
+      TRUSTED_PROXIES: ""
