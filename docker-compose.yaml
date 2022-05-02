@@ -1,6 +1,8 @@
 services:
   router:
-    image: ghcr.io/apollographql/router:v0.1.0-preview.4
+    image: ghcr.io/apollographql/router:v0.1.0-preview.6
+    environment:
+      - APOLLO_SCHEMA_CONFIG_EMBEDDED=true
     volumes:
       - ./knighthacks_router/schema.graphql:/etc/config/supergraph.graphql
       - ./knighthacks_router/configuration.yaml:/etc/config/configuration.yaml
