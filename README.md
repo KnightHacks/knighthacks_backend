@@ -18,7 +18,7 @@ Tip: If you are using ssh key passphrases and don't want to type in your passphr
 
 ## Requirements
 
-### Golang v1.18
+### Golang 1.18
 We require version 1.18 in the development enviroment because of [workspace support](https://go.dev/doc/tutorial/workspaces). Workspaces allow you to seemlessly utilize our module-based workspace without having to push the changes of a dependency (like [shared](https://github.com/KnightHacks/knighthacks_shared)), and then make use the change on the dependent module. You can see live-changes to your dependencies from your dependents in your IDE when using go workspaces.  
 
 ### Something that can run a bash script
