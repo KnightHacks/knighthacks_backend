@@ -1,18 +1,18 @@
 [submodule "knighthacks_sponsors"]
 	path = knighthacks_sponsors
-	url = git@github.com:LockedThread/knighthacks_sponsors.git
+	url = git@github.com:KnightHacks/knighthacks_sponsors.git
 [submodule "knighthacks_users"]
 	path = knighthacks_users
-	url = git@github.com:LockedThread/knighthacks_users.git
+	url = git@github.com:KnightHacks/knighthacks_users.git
 [submodule "knighthacks_events"]
 	path = knighthacks_events
-	url = git@github.com:LockedThread/knighthacks_events.git
+	url = git@github.com:KnightHacks/knighthacks_events.git
 [submodule "knighthacks_router"]
 	path = knighthacks_router
-	url = git@github.com:LockedThread/knighthacks_router.git
+	url = git@github.com:KnightHacks/knighthacks_router.git
 [submodule "knighthacks_shared"]
 	path = knighthacks_shared
-	url = git@github.com:LockedThread/knighthacks_shared.git
+	url = git@github.com:KnightHacks/knighthacks_shared.git
 [submodule "knighthacks_hackathon"]
 	path = knighthacks_hackathon
-	url = git@github.com:LockedThread/knighthacks_hackathon.git
+	url = git@github.com:KnightHacks/knighthacks_hackathon.git
