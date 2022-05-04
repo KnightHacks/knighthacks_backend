@@ -21,5 +21,7 @@ Tip: If you are using ssh key passphrases and don't want to type in your passphr
 ### Golang 1.18
 We require version 1.18 in the development enviroment because of [workspace support](https://go.dev/doc/tutorial/workspaces). Workspaces allow you to seemlessly utilize our module-based workspace without having to push the changes of a dependency (like [shared](https://github.com/KnightHacks/knighthacks_shared)), and then make use the change on the dependent module. You can see live-changes to your dependencies from your dependents in your IDE when using go workspaces.  
 
-### Something that can run a bash script
+### Something that can run a shell script
 Whether you are on Linux, MacOS, [Windows using WSL](https://docs.microsoft.com/en-us/windows/wsl/about), or [Git Bash (not recommended)](https://gitforwindows.org/), we don't care. If you want to be able to run the bash scripts you must be on one of these platforms. This is not a must, however it will make your development flow a lot more seemless. No one wants to remember some long command that you use once in a blue moon.
+
+**Someone should write the shell scripts in windows batch**
