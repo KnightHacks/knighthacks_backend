@@ -45,3 +45,10 @@ services:
     environment:
       GIN_MODE: "debug"
       TRUSTED_PROXIES: ""
+  postgres:
+    image: "postgres:14-alpine"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5432:5432"
