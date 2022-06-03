@@ -25,3 +25,19 @@ We require version 1.18 in the development environment because of [workspace sup
 Whether you are on Linux, MacOS, [Windows using WSL](https://docs.microsoft.com/en-us/windows/wsl/about), or [Git Bash (not recommended)](https://gitforwindows.org/), we don't care. If you want to be able to run the bash scripts you must be on one of these platforms. This is not a must, however it will make your development flow a lot more seemless. No one wants to remember some long command that you use once in a blue moon.
 
 **Someone should write the shell scripts in windows batch**
+
+## Updating
+If you would like to check out and pull all submodules onto the main branch you may execute the following command:
+```bash
+git submodule foreach "git checkout main && git pull"
+```
+
+## Testing
+This repository utilizes a docker-compose file, if you would like to spin up everything at once then you may do the following command
+```bash
+docker-compose up --build
+```
+If you would like to just spin up a certain service you can do the previous command with the name of the service provided in the docker-compose.yaml file appended. For example, to startup the postgres service you would do the following:
+```bash
+docker-compose up --build postgres
+```
