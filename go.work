@@ -5,3 +5,4 @@ use knighthacks_users
 use knighthacks_sponsors
 use knighthacks_shared
 use knighthacks_hackathon
+use knighthacks_cli
