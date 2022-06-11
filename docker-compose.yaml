@@ -1,12 +1,12 @@
 services:
   router:
-    image: ghcr.io/apollographql/router:v0.1.0-preview.6
+    image: ghcr.io/apollographql/router:v0.9.2
     environment:
       - APOLLO_SCHEMA_CONFIG_EMBEDDED=true
     volumes:
       - ./knighthacks_router/schema.graphql:/etc/config/supergraph.graphql
       - ./knighthacks_router/configuration.yaml:/etc/config/configuration.yaml
-    command: [ "-c", "/etc/config/configuration.yaml", "--supergraph", "/etc/config/supergraph.graphql", "--log", "info" ]
+    command: [ "-c", "/etc/config/configuration.yaml", "--supergraph", "/etc/config/supergraph.graphql", "--log", "debug" ]
     ports:
       - "4000:4000"
   events:
