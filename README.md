@@ -57,7 +57,7 @@ git submodule foreach "git checkout main && git pull"
 ### .env file
 
 You must setup your .env file before continuing, to do so follow
-the [ENVIRONMENT.md](https://github.com/KnightHacks/knighthacks_backend/ENVIRONMENT.md).####
+the [ENVIRONMENT.md](https://github.com/KnightHacks/knighthacks_backend/ENVIRONMENT.md)
 
 ### Compose
 
