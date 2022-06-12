@@ -63,16 +63,16 @@ create table pronouns
 create table users
 (
     id             serial,
-    email          character varying[] not null,
-    phone_number   character varying[] not null,
-    last_name      varchar             not null,
+    email          varchar not null,
+    phone_number   varchar,
+    last_name      varchar not null,
     age            integer,
     pronoun_id     integer
         constraint users_pronouns_id_fk
             references pronouns,
-    first_name     varchar             not null,
-    oauth_uid      varchar             not null,
-    oauth_provider varchar             not null,
+    first_name     varchar not null,
+    oauth_uid      varchar not null,
+    oauth_provider varchar not null,
     constraint users_pk
         primary key (id, oauth_uid)
 );
