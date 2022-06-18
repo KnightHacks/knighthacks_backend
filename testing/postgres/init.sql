@@ -71,6 +71,7 @@ create table users
         constraint users_pronouns_id_fk
             references pronouns,
     first_name     varchar not null,
+    role           varchar not null,
     oauth_uid      varchar not null,
     oauth_provider varchar not null,
     constraint users_pk
