@@ -57,6 +57,7 @@ services:
   postgres:
     image: "postgres:14-alpine"
     restart: always
+    command: ["postgres", "-c", "log_statement=all"]
     environment:
       POSTGRES_PASSWORD: test
     ports:
@@ -64,5 +65,7 @@ services:
     volumes:
       - ./testing/postgres/init.sql:/docker-entrypoint-initdb.d/db.sql
       - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-logs:/logs:z
 volumes:
   postgres-data:
+  postgres-logs:
