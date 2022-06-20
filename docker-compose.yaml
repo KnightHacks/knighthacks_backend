@@ -5,6 +5,7 @@ services:
       - APOLLO_SCHEMA_CONFIG_EMBEDDED=true
     volumes:
       - ./knighthacks_router/schema.graphql:/etc/config/supergraph.graphql
+      - ./knighthacks_router/script.rhai:/etc/config/script.rhai
       - ./knighthacks_router/configuration.yaml:/etc/config/configuration.yaml
     command: [ "-c", "/etc/config/configuration.yaml", "--supergraph", "/etc/config/supergraph.graphql", "--log", "debug" ]
     ports:
