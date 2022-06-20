@@ -22,6 +22,12 @@ git clone --recurse-submodules -j8 git@github.com:KnightHacks/knighthacks_backen
 
 The `-j8` flag parallelizes the cloning to save time in the cloning process.
 
+
+Following the previous command I suggest running the following command inside of the knighthacks_backend repository folder. It will checkout all submdules onto the main branch and pull down any recent changes. 
+```bash
+bash checkoutall.sh main
+```
+
 Tip: If you are using ssh key passphrases and don't want to type in your passphrase an unbearable amount of times I
 suggest using [ssh-agent](https://www.ssh.com/academy/ssh/add)
 
@@ -43,14 +49,6 @@ scripts you must be on one of these platforms. This is not a must, however it wi
 seemless. No one wants to remember some long command that you use once in a blue moon.
 
 **Someone should write the shell scripts in windows batch**
-
-## Updating
-
-If you would like to check out and pull all submodules onto the main branch you may execute the following command:
-
-```bash
-git submodule foreach "git checkout main && git pull"
-```
 
 ## Testing
 
