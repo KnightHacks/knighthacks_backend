@@ -6,7 +6,7 @@ The following fields must be set with their appropriate values:
 ```dotenv
 OAUTH_GITHUB_CLIENT_ID=
 OAUTH_GITHUB_CLIENT_SECRET=
-OAUTH_GITHUB_REDIRECT_URL=
+OAUTH_GITHUB_REDIRECT_URL=http://localhost:8080/auth_redirect
 
 JWT_SIGNING_KEY=
 AES_CIPHER=
