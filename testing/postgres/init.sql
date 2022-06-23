@@ -91,9 +91,6 @@ create table users
 create unique index users_email_uindex
     on users (email);
 
-create unique index users_id_uindex
-    on users (id);
-
 create unique index users_phone_number_uindex
     on users (phone_number);
 
