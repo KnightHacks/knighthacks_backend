@@ -157,4 +157,4 @@ backend.iml
 .idea/*
 
 .env
-./postgres-data
+/postgres-data
