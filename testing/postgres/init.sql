@@ -23,24 +23,31 @@ create unique index sponsors_name_uindex
 
 create table terms
 (
-    id       serial
-        constraint terms_pk
-            primary key,
+    id       serial,
     year     integer  not null,
-    semester semester not null
+    semester semester not null,
+    constraint terms_pk
+        primary key (id)
 );
+
+create unique index terms_id_uindex
+    on terms (id);
 
 create table hackathons
 (
-    id         serial
-        constraint hackathons_pk
-            primary key,
-    term_id    serial
-        constraint hackathons_terms_id_fk
-            references terms,
+    id         serial,
+    term_id    serial,
     start_date timestamp not null,
-    end_date   timestamp not null
+    end_date   timestamp not null,
+    constraint hackathons_pk
+        primary key (id),
+    constraint hackathons_terms_id_fk
+        foreign key (term_id) references terms
 );
+
+alter table terms
+    add constraint terms_hackathons_term_id_fk
+        foreign key (id) references hackathons (term_id);
 
 create unique index hackathons_id_uindex
     on hackathons (id);
@@ -48,17 +55,20 @@ create unique index hackathons_id_uindex
 create unique index hackathons_term_id_uindex
     on hackathons (term_id);
 
-create unique index terms_id_uindex
-    on terms (id);
-
 create table pronouns
 (
-    id         serial
-        constraint pronouns_pk
-            primary key,
+    id         serial,
     subjective varchar not null,
-    objective  varchar not null
+    objective  varchar not null,
+    constraint pronouns_pk
+        primary key (id)
 );
+
+create unique index pronouns_id_uindex
+    on pronouns (id);
+
+create unique index pronouns_id_uindex
+    on pronouns (id);
 
 create table users
 (
@@ -67,15 +77,15 @@ create table users
     phone_number   varchar,
     last_name      varchar not null,
     age            integer,
-    pronoun_id     integer
-        constraint users_pronouns_id_fk
-            references pronouns,
+    pronoun_id     integer,
     first_name     varchar not null,
     role           varchar not null,
     oauth_uid      varchar not null,
     oauth_provider varchar not null,
     constraint users_pk
-        primary key (id, oauth_uid)
+        primary key (id, oauth_uid),
+    constraint users_pronouns_id_fk
+        foreign key (pronoun_id) references pronouns
 );
 
 create unique index users_email_uindex
@@ -87,6 +97,36 @@ create unique index users_id_uindex
 create unique index users_phone_number_uindex
     on users (phone_number);
 
-create unique index pronouns_id_uindex
-    on pronouns (id);
+create unique index users_pk
+    on users (id);
+
+create table hackathon_participants
+(
+    user_id      integer not null,
+    hackathon_id integer not null
+);
+
+create table hackathon_sponsors
+(
+    hackathon_id integer not null,
+    sponsor_id   integer not null
+);
+
+create table events
+(
+    id           serial,
+    hackathon_id integer   not null,
+    location     varchar   not null,
+    start_date   timestamp not null,
+    end_date     timestamp not null,
+    name         varchar   not null,
+    description  varchar   not null,
+    constraint events_pk
+        primary key (id),
+    constraint events_hackathons_id_fk
+        foreign key (hackathon_id) references hackathons
+);
+
+create unique index events_id_uindex
+    on events (id);
 
