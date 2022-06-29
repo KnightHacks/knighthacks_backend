@@ -52,24 +52,4 @@ seemless. No one wants to remember some long command that you use once in a blue
 
 ## Testing
 
-### .env file
-
-You must setup your .env file before continuing, to do so follow
-the [ENVIRONMENT.md](https://github.com/KnightHacks/knighthacks_backend/ENVIRONMENT.md)
-
-### Compose
-
-This repository utilizes a docker-compose file, if you would like to spin up everything at once then you may do the
-following command
-
-```bash
-docker-compose up --build
-```
-
-If you would like to just spin up a certain service you can do the previous command with the name of the service
-provided in the docker-compose.yaml file appended. For example, to startup the postgres service you would do the
-following:
-
-```bash
-docker-compose up --build postgres
-```
+Follow the guide [here](https://github.com/KnightHacks/knighthacks_backend/blob/main/TESTING.md)
