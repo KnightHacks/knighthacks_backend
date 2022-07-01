@@ -17,10 +17,11 @@ services:
     build:
       context: ./knighthacks_events
       dockerfile: ./Dockerfile
+    env_file: [ .env ]
     environment:
       GIN_MODE: "debug"
       TRUSTED_PROXIES: ""
-      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres?parseTime=true"
+      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres"
   users:
     depends_on:
       - router
@@ -32,7 +33,7 @@ services:
     environment:
       GIN_MODE: "debug"
       TRUSTED_PROXIES: ""
-      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres?parseTime=true"
+      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres"
   sponsors:
     depends_on:
       - router
@@ -40,10 +41,11 @@ services:
     build:
       context: ./knighthacks_sponsors
       dockerfile: ./Dockerfile
+    env_file: [ .env ]
     environment:
       GIN_MODE: "debug"
       TRUSTED_PROXIES: ""
-      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres?parseTime=true"
+      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres"
   hackathon:
     depends_on:
       - router
@@ -51,10 +53,11 @@ services:
     build:
       context: ./knighthacks_hackathon
       dockerfile: ./Dockerfile
+    env_file: [ .env ]
     environment:
       GIN_MODE: "debug"
       TRUSTED_PROXIES: ""
-      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres?parseTime=true"
+      DATABASE_URI: "postgresql://postgres:test@postgres:5432/postgres"
   postgres:
     image: "postgres:14-alpine"
     restart: always
