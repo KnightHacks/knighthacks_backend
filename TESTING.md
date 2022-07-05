@@ -74,6 +74,22 @@ You can smash your hands on your keyboard and create an under 100 character stri
 Similarly to the JWT Signing Key, you can smash your hands on your keyboard and create an **exactly** 32 character
 string.
 
+## Schema Composition
+
+For the router microservice you first need to compose your schema from all of your microservice "subschemas" follow the
+instructions on installing [Rover](https://www.apollographql.com/docs/rover/getting-started).
+Rover is the program that handles supergraph schema composition. For information on super and subgraphs
+checkout [this](https://www.apollographql.com/docs/federation).
+
+In the router microservice there is a compose.sh file that you can run like so:
+
+```bash
+compose.sh dev
+```
+
+This command will generate a file called schema.graphql that will be **NOT be source controlled** and whenever you make
+a change to any of the other microservice's schemas you must re-run this command.
+
 ## Running the Project
 
 Using docker-compose, and it's configuration stored in
