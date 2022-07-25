@@ -45,15 +45,15 @@ create table hackathons
         foreign key (term_id) references terms
 );
 
-alter table terms
-    add constraint terms_hackathons_term_id_fk
-        foreign key (id) references hackathons (term_id);
-
 create unique index hackathons_id_uindex
     on hackathons (id);
 
 create unique index hackathons_term_id_uindex
     on hackathons (term_id);
+
+alter table terms
+    add constraint terms_hackathons_term_id_fk
+        foreign key (id) references hackathons (term_id);
 
 create table pronouns
 (
@@ -63,9 +63,6 @@ create table pronouns
     constraint pronouns_pk
         primary key (id)
 );
-
-create unique index pronouns_id_uindex
-    on pronouns (id);
 
 create unique index pronouns_id_uindex
     on pronouns (id);
@@ -94,9 +91,6 @@ create unique index users_email_uindex
 create unique index users_phone_number_uindex
     on users (phone_number);
 
-create unique index users_pk
-    on users (id);
-
 create table hackathon_participants
 (
     user_id      integer not null,
@@ -124,6 +118,4 @@ create table events
         foreign key (hackathon_id) references hackathons
 );
 
-create unique index events_id_uindex
-    on events (id);
 
