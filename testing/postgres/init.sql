@@ -93,8 +93,9 @@ create unique index users_phone_number_uindex
 
 create table hackathon_participants
 (
-    user_id      integer not null,
-    hackathon_id integer not null
+    user_id       integer not null,
+    hackathon_id  integer not null,
+    accepted_date timestamp
 );
 
 create table hackathon_sponsors
