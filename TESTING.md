@@ -96,6 +96,12 @@ Using docker-compose, and it's configuration stored in
 the  [docker-compose.yaml](https://github.com/KnightHacks/knighthacks_backend/blob/main/docker-compose.yaml) you can use
 the [docker-compose up](https://docs.docker.com/engine/reference/commandline/compose_up/) command to run the project.
 
+**Before going any further** make sure to do the following command in the main directory of the project the before proceeding:
+```bash
+docker-compose up --build postgres
+```
+After about 30 seconds of the program running it should say postgres can now accept
+
 If a change was made to the code since the last build of the docker image append the `--build` flag at the end of
 command.
 
@@ -120,3 +126,31 @@ docker-compose up --build users
 ```
 
 This will turn on the users service, and its dependent services such as postgres and router. 
+
+
+## Shutting down the project
+Whenever you do `docker-compose up` by default it runs live in the current terminal widow 
+
+## Connecting
+
+Connecting to the Apollo Router microservice now running is as simple as opening your browser and going to
+http://localhost:4000. Once you open that you will be able to open Apollo Studio and explore the GraphQL API.
+
+## Signing in
+
+Using the KnightHacks CLI in the [knighthacks_cli](https://github.com/KnightHacks/knighthacks_cli/) repository you can
+register, sign in, or do whatever you'd like to do with the API.
+
+Most importantly, you need a [JWT](https://jwt.io/) to be able to send authenticated requests to the backend. To get
+that JWT you must use the [knighthacks_cli](https://github.com/KnightHacks/knighthacks_cli/).
+
+First, register an account using the CLI. For example:
+```bash
+knighthacks_cli auth register --first-name Joe --last-name Mama --email joe.mama@test.com --phone 1234567890 
+```
+
+Then, login to the account:
+
+```bash
+knighthacks_cli auth login
+```
