@@ -154,3 +154,5 @@ Then, login to the account:
 ```bash
 knighthacks_cli auth login
 ```
+
+Copy the JWT it gives when you execute the login command. Ensure that the copied JWT does not have any spaces in it then add it as a HTTP header in the apollo studio website where the header name/key is `authorization` and the value is `bearer JWT` where `JWT` is the JWT you copied.
