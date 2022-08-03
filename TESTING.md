@@ -84,7 +84,7 @@ checkout [this](https://www.apollographql.com/docs/federation).
 In the router microservice there is a compose.sh file that you can run like so:
 
 ```bash
-compose.sh dev
+bash compose.sh dev
 ```
 
 This command will generate a file called schema.graphql that will be **NOT be source controlled** and whenever you make
@@ -146,13 +146,13 @@ that JWT you must use the [knighthacks_cli](https://github.com/KnightHacks/knigh
 
 First, register an account using the CLI. For example:
 ```bash
-knighthacks_cli auth register --first-name Joe --last-name Mama --email joe.mama@test.com --phone 1234567890 
+./knighthacks_cli auth register --first-name Joe --last-name Mama --email joe.mama@test.com --phone 1234567890 
 ```
 
 Then, login to the account:
 
 ```bash
-knighthacks_cli auth login
+./knighthacks_cli auth login
 ```
 
 Copy the JWT it gives when you execute the login command. Ensure that the copied JWT does not have any spaces in it then add it as a HTTP header in the apollo studio website where the header name/key is `authorization` and the value is `bearer JWT` where `JWT` is the JWT you copied.
