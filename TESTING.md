@@ -173,6 +173,6 @@ First, using the previous knighthacks_cli login command retrieve the `User ID` f
 Enter the scripts folder and execute the following command:
 
 ```shell
-bash set_user_role.sh {USER_ID} admin
+bash set_user_role.sh {USER_ID} ADMIN
 ```
 Where `{USER_ID}` is the ID from the login command.
