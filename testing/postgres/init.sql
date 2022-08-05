@@ -1,4 +1,4 @@
-create type semester as enum ('fall', 'spring', 'summer');
+create type semester as enum ('FALL', 'SPRING', 'SUMMER');
 
 create type subscription_tier as enum ('BRONZE', 'SILVER', 'GOLD', 'PLATINUM');
 
