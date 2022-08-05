@@ -142,7 +142,7 @@ http://localhost:4000. Once you open that you will be able to open Apollo Studio
 ## Signing in
 
 Using the KnightHacks CLI in the [knighthacks_cli](https://github.com/KnightHacks/knighthacks_cli/) repository you can
-register, sign in, or do whatever you'd like to do with the API.
+register, sign in, or do whatever you'd like to do with the API. Ensure you follow the instructions on the knighthacks_cli repository.
 
 Most importantly, you need a [JWT](https://jwt.io/) to be able to send authenticated requests to the backend. To get
 that JWT you must use the [knighthacks_cli](https://github.com/KnightHacks/knighthacks_cli/).
@@ -173,6 +173,6 @@ First, using the previous knighthacks_cli login command retrieve the `User ID` f
 Enter the scripts folder and execute the following command:
 
 ```shell
-bash set_user_role.sh {USER_ID} admin
+bash set_user_role.sh {USER_ID} ADMIN
 ```
 Where `{USER_ID}` is the ID from the login command.
