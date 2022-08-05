@@ -96,10 +96,13 @@ Using docker-compose, and it's configuration stored in
 the  [docker-compose.yaml](https://github.com/KnightHacks/knighthacks_backend/blob/main/docker-compose.yaml) you can use
 the [docker-compose up](https://docs.docker.com/engine/reference/commandline/compose_up/) command to run the project.
 
-**Before going any further** make sure to do the following command in the main directory of the project the before proceeding:
+**Before going any further** make sure to do the following command in the main directory of the project the before
+proceeding:
+
 ```bash
 docker-compose up --build postgres
 ```
+
 After about 30 seconds of the program running it should say postgres can now accept
 
 If a change was made to the code since the last build of the docker image append the `--build` flag at the end of
@@ -125,11 +128,11 @@ If you just want to start up a single service, for example: users, you can do:
 docker-compose up --build users
 ```
 
-This will turn on the users service, and its dependent services such as postgres and router. 
-
+This will turn on the users service, and its dependent services such as postgres and router.
 
 ## Shutting down the project
-Whenever you do `docker-compose up` by default it runs live in the current terminal widow 
+
+Whenever you do `docker-compose up` by default it runs live in the current terminal widow
 
 ## Connecting
 
@@ -145,6 +148,7 @@ Most importantly, you need a [JWT](https://jwt.io/) to be able to send authentic
 that JWT you must use the [knighthacks_cli](https://github.com/KnightHacks/knighthacks_cli/).
 
 First, register an account using the CLI. For example:
+
 ```bash
 ./knighthacks_cli auth register --first-name Joe --last-name Mama --email joe.mama@test.com --phone 1234567890 
 ```
@@ -155,4 +159,20 @@ Then, login to the account:
 ./knighthacks_cli auth login
 ```
 
-Copy the JWT it gives when you execute the login command. Ensure that the copied JWT does not have any spaces in it then add it as a HTTP header in the apollo studio website where the header name/key is `authorization` and the value is `bearer JWT` where `JWT` is the JWT you copied.
+Copy the JWT it gives when you execute the login command. Ensure that the copied JWT does not have any spaces in it then
+add it as a HTTP header in the apollo studio website where the header name/key is `authorization` and the value
+is `bearer JWT` where `JWT` is the JWT you copied.
+
+## Setting up admin user
+
+The next step is to set the role of the user you just registered as an admin. To do that you will use
+the `set_user_role.sh` script. Ensure the database is online when using this command.
+
+First, using the previous knighthacks_cli login command retrieve the `User ID` from the output of the command.
+
+Enter the scripts folder and execute the following command:
+
+```shell
+bash set_user_role.sh {USER_ID} admin
+```
+Where `{USER_ID}` is the ID from the login command.
