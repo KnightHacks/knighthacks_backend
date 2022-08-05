@@ -51,10 +51,6 @@ create unique index hackathons_id_uindex
 create unique index hackathons_term_id_uindex
     on hackathons (term_id);
 
-alter table terms
-    add constraint terms_hackathons_term_id_fk
-        foreign key (id) references hackathons (term_id);
-
 create table pronouns
 (
     id         serial,
