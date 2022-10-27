@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+<header>
+    <img src="https://knighthacks.org/static/banner.png" alt="Knighthacks banner">
+</header>
+<main>
+    <h1 style="font-size:300%;">Congratulations {{.HackerFirstName}} {{.HackerLastName}}!</h1>
+    <p style="font-size:160%;">
+        Welcome to KnightHacks, UCF's annual hackathon!
+        <br>
+        Now there's just one thing you must do
+        <b> -- confirm your attendance.</b>
+    </p>
+    <p style="font-size:160%;">
+        In order to do so, simply check out the link below and submit the form.
+        This will let us know that you will be attending and secure a spot for you!
+        Your deadline to confirm is <b>{{.DeadlineTime}}</b>
+        <br>
+        If you don't confirm by the given date, your spot will not be guaranteed,
+        so please be sure to confirm right away!
+    </p>
+    <p style="font-size:160%;">
+        <img src="https://knighthacks.org/static/check-mark.png">
+        <br>
+        <a href="{{.URL}}">Confirm here!</a>
+        <br>
+        We hope to see you at KnightHacks this year!
+        <br>
+    </p>
+</main>
+
+<footer>
+    <p style="font-size:160%">
+        <img src="https://knighthacks.org/static/lotus.png">
+        <br>
+        With love,
+        <br>
+        The KnightHacks Organizing Team
+    </p>
+</footer>
+</body>
+</html>
