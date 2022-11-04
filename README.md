@@ -33,9 +33,9 @@ suggest using [ssh-agent](https://www.ssh.com/academy/ssh/add)
 
 ## Requirements
 
-### Golang 1.18
+### Golang 1.18+
 
-We require version 1.18 in the development environment because
+We require version 1.18+ in the development environment because
 of [workspace support](https://go.dev/doc/tutorial/workspaces). Workspaces allow you to seemlessly utilize our
 module-based workspace without having to push the changes of a dependency (
 like [shared](https://github.com/KnightHacks/knighthacks_shared)), and then make use the change on the dependent module.
