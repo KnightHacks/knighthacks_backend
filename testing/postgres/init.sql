@@ -1,3 +1,7 @@
+create type semester as enum ('FALL', 'SPRING', 'SUMMER');
+
+create type subscription_tier as enum ('BRONZE', 'SILVER', 'GOLD', 'PLATINUM');
+
 create table sponsors
 (
     id          serial,
@@ -10,9 +14,6 @@ create table sponsors
     constraint sponsors_pk
         primary key (id, name)
 );
-
-alter table sponsors
-    owner to postgres;
 
 create unique index sponsors_id_uindex
     on sponsors (id);
@@ -29,9 +30,6 @@ create table terms
     semester semester not null
 );
 
-alter table terms
-    owner to postgres;
-
 create unique index terms_id_uindex
     on terms (id);
 
@@ -46,9 +44,6 @@ create table hackathons
     start_date timestamp not null,
     end_date   timestamp not null
 );
-
-alter table hackathons
-    owner to postgres;
 
 create unique index hackathons_id_uindex
     on hackathons (id);
@@ -65,35 +60,32 @@ create table pronouns
     objective  varchar not null
 );
 
-alter table pronouns
-    owner to postgres;
-
 create unique index pronouns_id_uindex
     on pronouns (id);
 
 create table users
 (
-    id             serial,
-    email          varchar not null,
-    phone_number   varchar,
-    last_name      varchar not null,
-    age            integer,
-    pronoun_id     integer
+    id                  serial
+        constraint users_pk
+            primary key,
+    email               varchar not null,
+    phone_number        varchar,
+    last_name           varchar not null,
+    age                 integer,
+    pronoun_id          integer
         constraint users_pronouns_id_fk
             references pronouns,
-    first_name     varchar not null,
-    role           varchar not null,
-    oauth_uid      varchar not null,
-    oauth_provider varchar not null,
-    gender         varchar,
-    race           character varying[],
-    shirt_size     varchar not null,
-    constraint users_pk
-        primary key (id, oauth_uid)
+    first_name          varchar not null,
+    role                varchar not null,
+    oauth_uid           varchar not null
+        constraint users_oauth_uid_unique
+            unique,
+    oauth_provider      varchar not null,
+    years_of_experience double precision,
+    shirt_size          varchar not null,
+    race                character varying[],
+    gender              varchar
 );
-
-alter table users
-    owner to postgres;
 
 create unique index users_email_uindex
     on users (email);
@@ -103,12 +95,13 @@ create unique index users_phone_number_uindex
 
 create table hackathon_sponsors
 (
-    hackathon_id integer not null,
+    hackathon_id integer not null
+        constraint hackathon_sponsors_hackathons_null_fk
+            references hackathons,
     sponsor_id   integer not null
+        constraint hackathon_sponsors_sponsors_null_fk
+            references sponsors (id)
 );
-
-alter table hackathon_sponsors
-    owner to postgres;
 
 create table events
 (
@@ -125,94 +118,125 @@ create table events
     description  varchar   not null
 );
 
-alter table events
-    owner to postgres;
-
-create table meals
-(
-    meals        character varying[] not null,
-    hackathon_id integer             not null,
-    user_id      integer             not null
-);
-
-alter table meals
-    owner to postgres;
-
-create table hackathon_checkin
-(
-    time         timestamp not null,
-    hackathon_id integer   not null,
-    user_id      integer   not null
-);
-
-alter table hackathon_checkin
-    owner to postgres;
-
-create table event_attendance
-(
-    time     timestamp not null,
-    user_id  integer   not null,
-    event_id integer   not null
-);
-
-alter table event_attendance
-    owner to postgres;
-
 create table hackathon_applications
 (
-    user_id                   integer             not null,
-    hackathon_id              integer             not null,
-    why_attend                character varying[] not null,
-    what_do_you_want_to_learn character varying[] not null,
-    share_info_with_sponsors  boolean             not null,
-    application_status        varchar             not null,
-    created_time              timestamp           not null,
-    status_change_time        timestamp,
     id                        serial
         constraint hackathon_applications_pk
-            primary key
+            primary key,
+    user_id                   integer                 not null
+        constraint hackathon_applications_users_null_fk
+            references users,
+    hackathon_id              integer                 not null
+        constraint hackathon_applications_hackathons_null_fk
+            references hackathons,
+    why_attend                character varying[]     not null,
+    what_do_you_want_to_learn character varying[]     not null,
+    share_info_with_sponsors  boolean                 not null,
+    application_status        varchar                 not null,
+    created_time              timestamp default now() not null,
+    status_change_time        timestamp
 );
-
-alter table hackathon_applications
-    owner to postgres;
-
-create table education_info
-(
-    name            varchar   not null,
-    major           varchar   not null,
-    graduation_date timestamp not null,
-    level           varchar,
-    user_id         integer   not null
-        constraint education_info_pk
-            primary key
-);
-
-alter table education_info
-    owner to postgres;
 
 create table mailing_addresses
 (
+    user_id       integer             not null
+        constraint mailing_addresses_pk
+            primary key
+        constraint mailing_addresses_users_null_fk
+            references users,
     country       varchar             not null,
     state         varchar             not null,
     city          varchar             not null,
     postal_code   varchar             not null,
-    address_lines character varying[] not null,
-    user_id       integer             not null
-        constraint mailing_addresses_pk
-            primary key
+    address_lines character varying[] not null
 );
 
-alter table mailing_addresses
-    owner to postgres;
+alter table users
+    add constraint users_mailing_addresses_null_fk
+        foreign key (id) references mailing_addresses;
 
 create table mlh_terms
 (
+    user_id         integer not null
+        constraint mlh_terms_pk
+            primary key
+        constraint mlh_terms_users_null_fk
+            references users,
     send_messages   boolean not null,
     share_info      boolean not null,
-    code_of_conduct boolean not null,
-    user_id         integer not null
+    code_of_conduct boolean not null
 );
 
-alter table mlh_terms
-    owner to postgres;
+alter table users
+    add constraint users_mlh_terms_null_fk
+        foreign key (id) references mlh_terms;
 
+create table education_info
+(
+    user_id         integer   not null
+        constraint education_info_pk
+            primary key
+        constraint education_info_users_null_fk
+            references users,
+    name            varchar   not null,
+    major           varchar   not null,
+    graduation_date timestamp not null,
+    level           varchar
+);
+
+alter table users
+    add constraint users_education_info_null_fk
+        foreign key (id) references education_info;
+
+create table event_attendance
+(
+    event_id integer                 not null
+        constraint event_attendance_events_null_fk
+            references events,
+    user_id  integer                 not null
+        constraint event_attendance_users_null_fk
+            references users,
+    time     timestamp default now() not null,
+    constraint event_attendance_pk
+        primary key (event_id, user_id)
+);
+
+create table meals
+(
+    hackathon_id integer             not null
+        constraint meals_hackathons_null_fk
+            references hackathons,
+    user_id      integer             not null
+        constraint meals_users_null_fk
+            references users,
+    meals        character varying[] not null,
+    constraint meals_pk
+        primary key (hackathon_id, user_id)
+);
+
+create table hackathon_checkin
+(
+    hackathon_id integer   not null
+        constraint hackathon_attendance_hackathons_null_fk
+            references hackathons,
+    user_id      integer   not null
+        constraint hackathon_attendance_users_null_fk
+            references users,
+    time         timestamp not null,
+    constraint hackathon_checkin_pk
+        primary key (hackathon_id, user_id)
+);
+
+create table api_keys
+(
+    user_id integer   not null
+        constraint api_keys_pk
+            primary key
+        constraint api_keys_users_id_fk
+            references users,
+    key     varchar   not null,
+    created timestamp not null
+);
+
+create unique index api_keys_key_uindex
+    on api_keys (key);
