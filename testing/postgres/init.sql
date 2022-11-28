@@ -1,3 +1,4 @@
+-- SCHEMA START
 create type semester as enum ('FALL', 'SPRING', 'SUMMER');
 
 create type subscription_tier as enum ('BRONZE', 'SILVER', 'GOLD', 'PLATINUM');
@@ -74,7 +75,8 @@ create table users
     age                 integer,
     pronoun_id          integer
         constraint users_pronouns_id_fk
-            references pronouns,
+            references pronouns
+            deferrable initially deferred,
     first_name          varchar not null,
     role                varchar not null,
     oauth_uid           varchar not null
@@ -152,8 +154,9 @@ create table mailing_addresses
 );
 
 alter table users
-    add constraint users_mailing_addresses_null_fk
-        foreign key (id) references mailing_addresses;
+    add constraint users_mailing_addresses_user_id_fk
+        foreign key (id) references mailing_addresses
+            deferrable initially deferred;
 
 create table mlh_terms
 (
@@ -168,8 +171,9 @@ create table mlh_terms
 );
 
 alter table users
-    add constraint users_mlh_terms_null_fk
-        foreign key (id) references mlh_terms;
+    add constraint users_mlh_terms_user_id_fk
+        foreign key (id) references mlh_terms
+            deferrable initially deferred;
 
 create table education_info
 (
@@ -185,8 +189,9 @@ create table education_info
 );
 
 alter table users
-    add constraint users_education_info_null_fk
-        foreign key (id) references education_info;
+    add constraint users_education_info_user_id_fk
+        foreign key (id) references education_info
+            deferrable initially deferred;
 
 create table event_attendance
 (
@@ -240,3 +245,6 @@ create table api_keys
 
 create unique index api_keys_key_uindex
     on api_keys (key);
+-- SCHEMA END
+
+-- INTEGRATION TEST DATA END
