@@ -63,48 +63,11 @@ create table pronouns
 create unique index pronouns_id_uindex
     on pronouns (id);
 
-create table hackathon_sponsors
-(
-    hackathon_id integer not null
-        constraint hackathon_sponsors_hackathons_null_fk
-            references hackathons,
-    sponsor_id   integer not null
-        constraint hackathon_sponsors_sponsors_null_fk
-            references sponsors (id)
-);
-
-create table events
-(
-    id           serial
-        constraint events_pk
-            primary key,
-    hackathon_id integer   not null
-        constraint events_hackathons_id_fk
-            references hackathons,
-    location     varchar   not null,
-    start_date   timestamp not null,
-    end_date     timestamp not null,
-    name         varchar   not null,
-    description  varchar   not null
-);
-
-create table api_keys
-(
-    user_id integer   not null
-        constraint api_keys_pk
-            primary key,
-    key     varchar   not null,
-    created timestamp not null
-);
-
 create table users
 (
     id                  serial
         constraint users_pk
-            primary key
-        constraint users_api_keys_user_id_fk
-            references api_keys
-            deferrable initially deferred,
+            primary key,
     email               varchar not null,
     phone_number        varchar,
     last_name           varchar not null,
@@ -130,6 +93,31 @@ create unique index users_email_uindex
 
 create unique index users_phone_number_uindex
     on users (phone_number);
+
+create table hackathon_sponsors
+(
+    hackathon_id integer not null
+        constraint hackathon_sponsors_hackathons_null_fk
+            references hackathons,
+    sponsor_id   integer not null
+        constraint hackathon_sponsors_sponsors_null_fk
+            references sponsors (id)
+);
+
+create table events
+(
+    id           serial
+        constraint events_pk
+            primary key,
+    hackathon_id integer   not null
+        constraint events_hackathons_id_fk
+            references hackathons,
+    location     varchar   not null,
+    start_date   timestamp not null,
+    end_date     timestamp not null,
+    name         varchar   not null,
+    description  varchar   not null
+);
 
 create table hackathon_applications
 (
@@ -241,6 +229,15 @@ create table hackathon_checkin
     time         timestamp not null,
     constraint hackathon_checkin_pk
         primary key (hackathon_id, user_id)
+);
+
+create table api_keys
+(
+    user_id integer   not null
+        constraint api_keys_pk
+            primary key,
+    key     varchar   not null,
+    created timestamp not null
 );
 
 create unique index api_keys_key_uindex
