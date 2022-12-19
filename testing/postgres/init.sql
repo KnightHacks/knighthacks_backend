@@ -83,7 +83,7 @@ create table users
             unique,
     oauth_provider      varchar not null,
     years_of_experience double precision,
-    shirt_size          varchar not null,
+    shirt_size          varchar,
     race                character varying[],
     gender              varchar
 );
