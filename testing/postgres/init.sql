@@ -72,10 +72,7 @@ create table users
     phone_number        varchar,
     last_name           varchar not null,
     age                 integer,
-    pronoun_id          integer
-        constraint users_pronouns_id_fk
-            references pronouns
-            deferrable initially deferred,
+    pronoun_id          integer,
     first_name          varchar not null,
     role                varchar not null,
     oauth_uid           varchar not null
