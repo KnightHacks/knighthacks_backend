@@ -1,6 +1,6 @@
 services:
   router:
-    image: ghcr.io/apollographql/router:v1.2.1
+    image: ghcr.io/apollographql/router:v1.19.0
     environment:
       - APOLLO_SCHEMA_CONFIG_EMBEDDED=true
     volumes:
