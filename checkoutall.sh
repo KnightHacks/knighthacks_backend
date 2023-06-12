@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$1" = "development" ] || [ "$1" = "main" ]; then
-  git submodule foreach "git checkout $1 && git pull || :"
+  git submodule foreach "git checkout $1 && git pull origin $1 || :"
 else
   printf "You must supply dev or prod as arguments to the script\n"
 fi
