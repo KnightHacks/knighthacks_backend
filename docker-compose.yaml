@@ -3,6 +3,7 @@ services:
     image: ghcr.io/apollographql/router:v1.19.0
     environment:
       - APOLLO_SCHEMA_CONFIG_EMBEDDED=true
+      - APOLLO_ROUTER_LOG=error
     volumes:
       - ./knighthacks_router/schema.graphql:/etc/config/supergraph.graphql
       - ./knighthacks_router/script.rhai:/etc/config/script.rhai
