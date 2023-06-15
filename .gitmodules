@@ -19,3 +19,6 @@
 [submodule "knighthacks_cli"]
 	path = knighthacks_cli
 	url = git@github.com:KnightHacks/knighthacks_cli.git
+[submodule "hackathon-site-2023"]
+	path = hackathon-site-2023
+	url = git@github.com:KnightHacks/hackathon-site-2023.git

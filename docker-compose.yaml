@@ -8,7 +8,7 @@ services:
       - ./knighthacks_router/schema.graphql:/etc/config/supergraph.graphql
       - ./knighthacks_router/script.rhai:/etc/config/script.rhai
       - ./knighthacks_router/configuration.yaml:/etc/config/configuration.yaml
-    command: [ "-c", "/etc/config/configuration.yaml", "--supergraph", "/etc/config/supergraph.graphql"]
+    command: [ "-c", "/etc/config/configuration.yaml", "--supergraph", "/etc/config/supergraph.graphql" ]
     ports:
       - "4000:4000"
   events:
@@ -66,7 +66,7 @@ services:
   postgres:
     image: "postgres:14-alpine"
     restart: always
-    command: ["postgres", "-c", "log_statement=all"]
+    command: [ "postgres", "-c", "log_statement=all" ]
     environment:
       POSTGRES_PASSWORD: test
     ports:
@@ -75,6 +75,14 @@ services:
       - ./testing/postgres/init.sql:/docker-entrypoint-initdb.d/db.sql
       - ./postgres-data:/var/lib/postgresql/data
       - ./postgres-logs:/logs:z
+  hackathon-site-2023:
+    build:
+      context: ./hackathon-site-2023
+      dockerfile: ./Dockerfile
+    depends_on:
+      - router
+    environment:
+      NEXT_PUBLIC_API_ENDPOINT: http://router:4000
 volumes:
   postgres-data:
   postgres-logs:
