@@ -82,7 +82,9 @@ create table users
     years_of_experience double precision,
     shirt_size          varchar,
     race                character varying[],
-    gender              varchar
+    gender            varchar,
+    cyber_track       bool,
+    first_time_hacker bool
 );
 
 create unique index users_email_uindex
